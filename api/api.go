@@ -145,6 +145,7 @@ func signup(response http.ResponseWriter, request *http.Request) {
 
 	creds = append(creds, newSignup)
 
+	response.WriteHeader(201)
 	return
 }
 
