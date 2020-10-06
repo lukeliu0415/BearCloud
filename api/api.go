@@ -104,6 +104,11 @@ func getJSON(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	if newSignup.Username == "" {
+		http.Error(response, "Invalid username/password input", http.StatusBadRequest)
+		return
+	}
+
 	fmt.Fprintln(response, newSignup.Username)
 	fmt.Fprintf(response, newSignup.Password)
 
@@ -133,6 +138,11 @@ func signup(response http.ResponseWriter, request *http.Request) {
 	err := json.NewDecoder(request.Body).Decode(&newSignup)
 	if err != nil {
 		http.Error(response, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if newSignup.Username == "" {
+		http.Error(response, "Invalid username/password input", http.StatusBadRequest)
 		return
 	}
 
@@ -293,6 +303,11 @@ func deleteUser(response http.ResponseWriter, request *http.Request) {
 	err := json.NewDecoder(request.Body).Decode(&newSignup)
 	if err != nil {
 		http.Error(response, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if newSignup.Username == "" {
+		http.Error(response, "Invalid username/password input", http.StatusBadRequest)
 		return
 	}
 
