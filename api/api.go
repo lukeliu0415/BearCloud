@@ -52,12 +52,12 @@ func getCookie(response http.ResponseWriter, request *http.Request) {
 	cookie, err := request.Cookie("access_token")
 
 	if err != nil {
-		fmt.Fprintln(response, "")
+		fmt.Fprintf(response, "")
 		return
 	}
 
 	accessToken := cookie.Value
-	fmt.Fprintln(response, accessToken)
+	fmt.Fprintf(response, accessToken)
 
 	return
 }
@@ -72,7 +72,7 @@ func getQuery(response http.ResponseWriter, request *http.Request) {
 	/*YOUR CODE HERE*/
 	userID := request.URL.Query().Get("userID")
 
-	fmt.Fprintln(response, userID)
+	fmt.Fprintf(response, userID)
 
 	return
 
@@ -90,7 +90,7 @@ func getJSON(response http.ResponseWriter, request *http.Request) {
 
 		Decode this json file into an instance of Credentials.
 
-		Then, write the username and password to the response, separated by a newline.request
+		Then, write the username and password to the response, separated by a newline.
 
 		Make sure to error check! If there are any errors, call http.Error(), and pass in a "http.StatusBadRequest" What kind of errors can we expect here?
 	*/
@@ -104,7 +104,7 @@ func getJSON(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(response, newSignup.Username)
+	fmt.Fprintln(response, newSignup.Username)
 	fmt.Fprintf(response, newSignup.Password)
 
 	return
@@ -231,7 +231,7 @@ func updatePassword(response http.ResponseWriter, request *http.Request) {
 
 		{
 			"username" : <username>,
-			"password" : <password,
+			"password" : <password>,
 		}
 
 
