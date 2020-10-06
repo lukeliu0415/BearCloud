@@ -313,7 +313,7 @@ func deleteUser(response http.ResponseWriter, request *http.Request) {
 
 	for i, value := range creds {
 		if value.Username == newSignup.Username {
-			remove(creds, i)
+			creds = remove(creds, i)
 			return
 		}
 	}
